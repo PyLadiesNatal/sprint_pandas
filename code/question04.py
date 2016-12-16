@@ -24,19 +24,19 @@ def f_change_value(x):
     if type(x) is float:
         return 'R$ ' + str(x)
     else:
-        return
+        return x
 
 
 data = data.applymap(f_change_value)
 
 
-# applymap e New Columns
-def split_string(x):
-    print x
-    return x.split(' - ')
+# 3. Separe a string da coluna 'valor', a moeda (ex.: 'R$') deve ser colocado em uma nova coluna.
+def split_string(v):
+    data = v.split(' ')
+    return data[0], data[1]
 
 
-# print data['unidade']
-data['code'], data['unidade'] = zip(*data.unidade.map(split_string))
+#a, b = data['valor'].apply(split_string)
+data["moeda"], data["valor"] = zip(*data["valor"].str.split().tolist())
 
 print data.head()
