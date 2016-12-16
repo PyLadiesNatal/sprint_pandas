@@ -1,8 +1,6 @@
 # coding=utf-8
 from question02 import data
 
-import pandas as pd
-
 
 def sum_values(group):
     s = 0
@@ -12,8 +10,10 @@ def sum_values(group):
 
 
 # gastos por unidade
-grouped = data['valor'].head(7).groupby(data['unidade']).apply(sum_values)
-print grouped
+grouped = data['valor'].head(50).groupby(data['unidade']).apply(sum_values)
+
+
+# print grouped
 
 
 # grouped.describe().plot(kind="bar")
@@ -26,7 +26,17 @@ def f_change_value(x):
     else:
         return
 
+
 data = data.applymap(f_change_value)
-# print data.head()
+
 
 # applymap e New Columns
+def split_string(x):
+    print x
+    return x.split(' - ')
+
+
+# print data['unidade']
+data['code'], data['unidade'] = zip(*data.unidade.map(split_string))
+
+print data.head()
