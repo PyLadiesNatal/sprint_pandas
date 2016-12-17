@@ -15,7 +15,6 @@ grouped = data['valor'].head(50).groupby(data['unidade']).apply(sum_values)
 
 # print grouped
 
-
 # grouped.describe().plot(kind="bar")
 # plt.show()
 
@@ -36,7 +35,7 @@ def split_string(v):
     return data[0], data[1]
 
 
-#a, b = data['valor'].apply(split_string)
+# a, b = data['valor'].apply(split_string)
 data["moeda"], data["valor"] = zip(*data["valor"].str.split().tolist())
 
 print data.head()
