@@ -4,7 +4,15 @@ import pandas as pd
 
 # Map, Apply
 data['valor'] = data['valor'].map(lambda x: x.lstrip('R$').replace(".", "").replace(",", "."))
-data['valor'] = data['valor'].apply(pd.to_numeric, errors='coerce')
+#data['valor'] = data['valor'].apply(pd.to_numeric, errors='coerce')
+
+print data
+def convert_to_float(x):
+    return float(x)
+
+data['valor'] = data['valor'].apply(convert_to_float)
+
+#print type(data['valor'][0])
 
 if __name__ == '__main__':
     lista = data['valor']
